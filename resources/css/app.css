@@ -1,0 +1,178 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+
+    --color-vago: #0a6eb8;
+    --color-vago-dark: #084f86;
+    --color-vago-deep: #063a63;
+    --color-accent: #b42318;
+    --color-accent-warm: #d45a1a;
+    --color-sand: #f3efe6;
+    --color-ink: #1a2430;
+    --color-muted: #5b6775;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-sand text-ink font-sans antialiased;
+    }
+
+    ::selection {
+        @apply bg-vago/20 text-vago-deep;
+    }
+}
+
+@layer utilities {
+    .font-display {
+        font-family: var(--font-display);
+    }
+
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+@layer components {
+    .nav-link {
+        @apply rounded-md px-3 py-2 text-sm font-medium text-ink/80 transition hover:bg-vago/5 hover:text-vago-dark;
+    }
+
+    .nav-link--active {
+        @apply bg-vago/10 text-vago-dark;
+    }
+
+    .dropdown-link {
+        @apply block px-4 py-3 text-sm font-medium text-ink/80 transition first:rounded-t-md last:rounded-b-md hover:bg-vago/5 hover:text-vago-dark;
+    }
+
+    .mobile-link {
+        @apply block py-3 text-sm font-medium text-ink/80;
+    }
+
+    .mobile-sublink {
+        @apply block py-2 text-sm text-muted;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-md bg-vago px-5 py-3 text-sm font-semibold text-white transition hover:bg-vago-dark;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center rounded-md border border-vago/30 px-5 py-3 text-sm font-semibold text-vago-dark transition hover:bg-vago/5;
+    }
+
+    .form-input {
+        @apply w-full rounded-md border border-vago/20 bg-white px-4 py-3 text-sm text-ink outline-none ring-vago focus:ring-2;
+    }
+
+    .form-label {
+        @apply mb-2 block text-sm font-medium text-ink;
+    }
+
+    .card {
+        @apply overflow-hidden rounded-md border border-vago/10 bg-white shadow-sm transition hover:shadow-md;
+    }
+
+    .section-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.2em] text-vago;
+    }
+
+    .section-title {
+        @apply mt-3 font-display text-4xl font-semibold text-vago-deep sm:text-5xl;
+    }
+
+    /* Rich text content rendered from CMS (pages, posts, training programs). */
+    .rich-content {
+        @apply text-base leading-relaxed text-ink;
+    }
+
+    .rich-content :is(h1, h2, h3, h4) {
+        @apply font-display font-semibold text-vago-deep;
+    }
+
+    .rich-content h1 { @apply mt-10 mb-4 text-3xl first:mt-0; }
+    .rich-content h2 { @apply mt-9 mb-4 text-2xl first:mt-0; }
+    .rich-content h3 { @apply mt-7 mb-3 text-xl first:mt-0; }
+    .rich-content h4 { @apply mt-6 mb-2 text-lg first:mt-0; }
+
+    .rich-content p { @apply my-4 text-muted; }
+
+    .rich-content a { @apply text-vago underline decoration-vago/40 underline-offset-2 hover:text-vago-dark; }
+
+    .rich-content :is(ul, ol) { @apply my-4 ml-6 space-y-2 text-muted; }
+    .rich-content ul { @apply list-disc; }
+    .rich-content ol { @apply list-decimal; }
+
+    .rich-content img { @apply my-6 w-full rounded-md; }
+
+    .rich-content figcaption { @apply mt-2 text-center text-sm text-muted; }
+
+    .rich-content blockquote { @apply my-6 border-l-4 border-vago/40 pl-4 italic text-muted; }
+
+    .rich-content table { @apply my-6 w-full border-collapse overflow-hidden text-sm; }
+    .rich-content th { @apply border border-vago/15 bg-vago/5 px-3 py-2 text-left font-semibold text-vago-deep; }
+    .rich-content td { @apply border border-vago/15 px-3 py-2; }
+
+    .rich-content hr { @apply my-8 border-vago/15; }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes soft-zoom {
+    from {
+        transform: scale(1.06);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes draw-line {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.animate-fade-up {
+    animation: fade-up 0.9s ease-out both;
+}
+
+.animate-fade-up-delay {
+    animation: fade-up 0.9s ease-out 0.18s both;
+}
+
+.animate-fade-up-delay-2 {
+    animation: fade-up 0.9s ease-out 0.34s both;
+}
+
+.animate-soft-zoom {
+    animation: soft-zoom 8s ease-out both;
+}
+
+.animate-draw-line {
+    transform-origin: left;
+    animation: draw-line 1s ease-out 0.4s both;
+}

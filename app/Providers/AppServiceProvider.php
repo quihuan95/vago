@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use App\Support\Locale;
+use App\Support\Vago2026;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,12 +23,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', function ($view) {
-            $view->with([
-                'currentLocale' => Locale::current(),
-                'vago2026Url' => Setting::getValue('vago2026_url', 'https://vago2026.websitehoinghi'),
-                'journalUrl' => Setting::getValue('journal_url', 'https://vjog.vn/journal'),
-            ]);
+        $this->app->booted(function () {
+            if (! $this->app->bound('view')) {
+                return;
+            }
+
+            View::composer('*', function ($view) {
+                try {
+                    $journalUrl = Setting::getValue('journal_url', 'https://vjog.vn/journal');
+                } catch (\Throwable) {
+                    $journalUrl = 'https://vjog.vn/journal';
+                }
+
+                $view->with([
+                    'currentLocale' => Locale::current(),
+                    'vago2026Url' => Vago2026::url(),
+                    'journalUrl' => $journalUrl,
+                ]);
+            });
         });
     }
 }

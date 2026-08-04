@@ -16,11 +16,19 @@ class Setting extends Model
 
     public static function getValue(string $key, mixed $default = null): mixed
     {
-        $settings = Cache::rememberForever('settings.all', function () {
-            return static::query()->pluck('value', 'key')->all();
-        });
+        try {
+            $settings = Cache::rememberForever('settings.all', function () {
+                return static::query()->pluck('value', 'key')->all();
+            });
 
-        return $settings[$key] ?? $default;
+            return $settings[$key] ?? $default;
+        } catch (\Throwable) {
+            try {
+                return static::query()->where('key', $key)->value('value') ?? $default;
+            } catch (\Throwable) {
+                return $default;
+            }
+        }
     }
 
     public static function setValue(string $key, mixed $value, string $group = 'general', string $type = 'string'): void

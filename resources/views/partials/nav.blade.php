@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('vago2026') }}" target="_blank" rel="noopener" class="nav-link">
+            <a href="{{ $vago2026Url }}" target="_blank" rel="noopener" class="nav-link">
                 {{ __('site.nav_vago2026') }}
             </a>
 
@@ -99,7 +99,7 @@
                     </div>
                 </details>
 
-                <a href="{{ route('vago2026') }}" target="_blank" rel="noopener" class="mobile-link">{{ __('site.nav_vago2026') }}</a>
+                <a href="{{ $vago2026Url }}" target="_blank" rel="noopener" class="mobile-link">{{ __('site.nav_vago2026') }}</a>
                 <a href="{{ route('training.index') }}" class="mobile-link">{{ __('site.nav_training') }}</a>
 
                 <details @if(request()->routeIs($memberRoutes)) open @endif>

@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Support\Vago2026;
 use Illuminate\Http\RedirectResponse;
 
 class RedirectController extends Controller
 {
     public function vago2026(): RedirectResponse
     {
-        $url = Setting::getValue('vago2026_url', 'https://vago2026.websitehoinghi');
-
-        return redirect()->away($url);
+        return redirect()->away(Vago2026::url());
     }
 
     public function journal(): RedirectResponse

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\Setting;
+use App\Support\Vago2026;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -45,13 +45,11 @@ class HomeController extends Controller
                 ->get()
             : collect();
 
-        $vago2026Url = Setting::getValue('vago2026_url', 'https://vago2026.websitehoinghi');
-
         return view('pages.home', [
             'banners' => $banners,
             'featuredPosts' => $featuredPosts,
             'announcements' => $announcements,
-            'vago2026Url' => $vago2026Url,
+            'vago2026Url' => Vago2026::url(),
         ]);
     }
 }

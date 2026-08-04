@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             ['key' => 'contact_address_en', 'value' => "7th Floor, Building G, National Hospital of Obstetrics and Gynecology\n1 Trieu Quoc Dat Street, Cua Nam Ward, Hanoi", 'group' => 'contact'],
             ['key' => 'contact_email', 'value' => 'vago.vn@gmail.com', 'group' => 'contact'],
             ['key' => 'contact_phone', 'value' => '024.9346743', 'group' => 'contact'],
-            ['key' => 'vago2026_url', 'value' => 'https://vago2026.websitehoinghi', 'group' => 'links'],
+            ['key' => 'vago2026_url', 'value' => 'https://vago2026.websitehoinghi.com/vi', 'group' => 'links'],
             ['key' => 'vago2026_open_new_tab', 'value' => '1', 'group' => 'links', 'type' => 'boolean'],
             ['key' => 'journal_url', 'value' => 'https://vjog.vn/journal', 'group' => 'links'],
             ['key' => 'journal_open_new_tab', 'value' => '1', 'group' => 'links', 'type' => 'boolean'],

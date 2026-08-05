@@ -37,7 +37,12 @@ class FilesystemGallery
         return collect(File::directories($base))
             ->map(fn (string $dir) => $this->albumFromDirectory($dir))
             ->filter()
-            ->sortBy('title', SORT_NATURAL | SORT_FLAG_CASE)
+            ->sort(function (object $a, object $b): int {
+                $yearA = preg_match('/^(\d{4})/', (string) $a->event_date, $ma) ? (int) $ma[1] : 0;
+                $yearB = preg_match('/^(\d{4})/', (string) $b->event_date, $mb) ? (int) $mb[1] : 0;
+
+                return $yearB <=> $yearA ?: strcasecmp($a->title, $b->title);
+            })
             ->values();
     }
 

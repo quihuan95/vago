@@ -85,6 +85,9 @@ return [
 
     // Member
     'member_rules_title' => 'Membership Regulations',
+    'member_rules_intro' => 'VAGO Charter — reference document for membership registration.',
+    'member_rules_document' => 'VAGO Charter',
+    'member_rules_download' => 'Download Charter (PDF)',
     'member_register_title' => 'Membership Registration',
     'member_register_cta' => 'Register now',
     'member_field_full_name' => 'Full name',

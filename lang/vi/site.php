@@ -85,6 +85,9 @@ return [
 
     // Member
     'member_rules_title' => 'Thể lệ đăng ký hội viên',
+    'member_rules_intro' => 'Điều lệ Hội Phụ sản Việt Nam — tài liệu tham khảo khi đăng ký hội viên.',
+    'member_rules_document' => 'Điều lệ Hội Phụ sản Việt Nam',
+    'member_rules_download' => 'Tải Điều lệ (PDF)',
     'member_register_title' => 'Đăng ký hội viên',
     'member_register_cta' => 'Đăng ký hội viên ngay',
     'member_field_full_name' => 'Họ và tên',

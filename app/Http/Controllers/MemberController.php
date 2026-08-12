@@ -24,7 +24,9 @@ class MemberController extends Controller
             })
             ->first();
 
-        return view('pages.member.the-le', compact('page'));
+        $pdfUrl = asset('files/dieu-le/dieu-le-hoi-phu-san-vn.pdf');
+
+        return view('pages.member.the-le', compact('page', 'pdfUrl'));
     }
 
     public function registerForm(): View

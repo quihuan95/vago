@@ -7,11 +7,11 @@
 
     {{-- ============ Khối 1: Banner / slider ============ --}}
     @if ($banners->isNotEmpty())
-        <section class="relative min-h-[70vh] overflow-hidden bg-vago-deep sm:min-h-[88vh]" data-slider data-slider-interval="6000">
-            <div class="slider-track relative h-[70vh] sm:h-[88vh]">
+        <section class="relative overflow-hidden bg-vago-deep" data-slider data-slider-interval="6000">
+            <div class="slider-track relative">
                 @foreach ($banners as $index => $banner)
                     <div
-                        class="slider-slide absolute inset-0 transition-opacity duration-700 {{ $loop->first ? 'opacity-100' : 'opacity-0 pointer-events-none' }}"
+                        class="slider-slide transition-opacity duration-700 {{ $loop->first ? 'relative z-10 opacity-100' : 'absolute inset-0 z-0 opacity-0 pointer-events-none' }}"
                         data-slide-index="{{ $index }}"
                     >
                         @php
@@ -31,32 +31,10 @@
                             <img
                                 src="{{ $desktopSrc }}"
                                 alt="{{ $banner->t('title') ?: 'VAGO' }}"
-                                class="h-full w-full object-cover object-center"
+                                class="{{ $loop->first ? 'block h-auto w-full' : 'h-full w-full object-contain object-center' }}"
                                 loading="{{ $loop->first ? 'eager' : 'lazy' }}"
                             >
                         </picture>
-
-                        @if ($banner->t('title') || $banner->t('description'))
-                            <div class="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
-                                <div class="max-w-2xl">
-                                    @if ($banner->t('title'))
-                                        <h2 class="font-display text-3xl font-semibold text-white sm:text-5xl">{{ $banner->t('title') }}</h2>
-                                    @endif
-                                    @if ($banner->t('description'))
-                                        <p class="mt-4 max-w-xl text-base text-white/85 sm:text-lg">{{ $banner->t('description') }}</p>
-                                    @endif
-                                    @if ($banner->link_url)
-                                        <a
-                                            href="{{ $banner->link_url }}"
-                                            @if ($banner->open_in_new_tab) target="_blank" rel="noopener" @endif
-                                            class="btn-primary mt-6"
-                                        >
-                                            {{ __('site.read_more') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 @endforeach
             </div>
@@ -81,21 +59,21 @@
             @endif
         </section>
     @else
-        <section class="relative min-h-[70vh] overflow-hidden bg-vago-deep sm:min-h-[88vh]">
+        <section class="relative overflow-hidden bg-vago-deep">
             <img
                 src="{{ asset('images/hero-banner.jpg') }}"
                 alt="VAGO — Hội Phụ sản Việt Nam"
-                class="animate-soft-zoom absolute inset-0 h-full w-full object-cover object-center"
+                class="animate-soft-zoom block h-auto w-full object-contain object-center"
             >
             <div class="absolute inset-0 bg-gradient-to-r from-vago-deep/95 via-vago-deep/70 to-vago-deep/25"></div>
-            <div class="relative mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-end px-4 pb-16 pt-24 sm:px-6 sm:min-h-[88vh] sm:pb-20 lg:px-8 lg:pb-24">
+            <div class="absolute inset-0 mx-auto flex max-w-7xl flex-col justify-end px-4 pb-10 pt-16 sm:px-6 sm:pb-14 lg:px-8 lg:pb-16">
                 <div class="max-w-3xl">
-                    <p class="animate-fade-up font-display text-5xl font-semibold tracking-wide text-white sm:text-6xl lg:text-7xl">VAGO</p>
+                    <p class="animate-fade-up font-display text-4xl font-semibold tracking-wide text-white sm:text-5xl lg:text-6xl">VAGO</p>
                     <p class="animate-fade-up-delay mt-2 text-sm font-medium uppercase tracking-[0.2em] text-white/80">{{ __('site.site_name') }}</p>
-                    <h1 class="animate-fade-up-delay mt-8 max-w-2xl font-display text-3xl font-medium leading-tight text-white sm:text-4xl lg:text-[2.75rem]">
+                    <h1 class="animate-fade-up-delay mt-5 max-w-2xl font-display text-2xl font-medium leading-tight text-white sm:mt-6 sm:text-3xl lg:text-4xl">
                         Kết nối chuyên môn, nâng cao chăm sóc sức khỏe bà mẹ và trẻ sơ sinh
                     </h1>
-                    <div class="animate-fade-up-delay-2 mt-9 flex flex-wrap gap-3">
+                    <div class="animate-fade-up-delay-2 mt-6 flex flex-wrap gap-3 sm:mt-8">
                         <a href="{{ route('about.gioi-thieu-chung') }}" class="btn-primary bg-white text-vago-deep hover:bg-sand">{{ __('site.read_more') }}</a>
                         <a href="{{ route('contact.show') }}" class="btn-outline border-white/40 text-white hover:bg-white/10">{{ __('site.nav_contact') }}</a>
                     </div>

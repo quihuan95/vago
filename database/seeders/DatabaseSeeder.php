@@ -204,22 +204,62 @@ HTML,
 
     private function seedBoardMembers(): void
     {
+        // Xóa bản ghi mẫu cũ (nếu còn).
+        BoardMember::query()
+            ->whereIn('name_vi', [
+                'PGS.TS. Nguyễn Văn A',
+                'PGS.TS. Trần Thị B',
+            ])
+            ->delete();
+
         $members = [
-            ['name_vi' => 'PGS.TS. Nguyễn Văn A', 'name_en' => 'Assoc. Prof. Nguyen Van A', 'position_vi' => 'Chủ tịch Hội', 'position_en' => 'President', 'sort_order' => 1],
-            ['name_vi' => 'PGS.TS. Trần Thị B', 'name_en' => 'Assoc. Prof. Tran Thi B', 'position_vi' => 'Tổng Thư ký', 'position_en' => 'Secretary General', 'sort_order' => 2],
+            ['name_vi' => 'GS.TS. Nguyễn Viết Tiến', 'name_en' => 'Prof. Dr. Nguyen Viet Tien', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Chủ tịch', 'position_en' => 'President'],
+            ['name_vi' => 'GS.TS. Nguyễn Duy Ánh', 'name_en' => 'Prof. Dr. Nguyen Duy Anh', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Phó Chủ tịch thường trực', 'position_en' => 'Standing Vice President'],
+            ['name_vi' => 'GS.TS. Trần Danh Cường', 'name_en' => 'Prof. Dr. Tran Danh Cuong', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'GS. Nguyễn Thị Ngọc Phượng', 'name_en' => 'Prof. Nguyen Thi Ngoc Phuong', 'title_vi' => 'GS.', 'title_en' => 'Prof.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'PGS.TS. Vũ Bá Quyết', 'name_en' => 'Assoc. Prof. Dr. Vu Ba Quyet', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'GS.TS. Cao Ngọc Thành', 'name_en' => 'Prof. Dr. Cao Ngoc Thanh', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'GS.TS. Nguyễn Vũ Quốc Huy', 'name_en' => 'Prof. Dr. Nguyen Vu Quoc Huy', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Phó Chủ tịch; Phó Tổng Biên tập Tạp chí Sản Phụ khoa', 'position_en' => 'Vice President; Deputy Editor-in-Chief, Journal of Obstetrics and Gynecology'],
+            ['name_vi' => 'TS. Lê Quang Thanh', 'name_en' => 'Dr. Le Quang Thanh', 'title_vi' => 'TS.', 'title_en' => 'Dr.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'PGS.TS. Hoàng Thị Diễm Tuyết', 'name_en' => 'Assoc. Prof. Dr. Hoang Thi Diem Tuyet', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'PGS.TS. Vũ Văn Tâm', 'name_en' => 'Assoc. Prof. Dr. Vu Van Tam', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Phó Chủ tịch', 'position_en' => 'Vice President'],
+            ['name_vi' => 'PGS.TS. Lưu Thị Hồng', 'name_en' => 'Assoc. Prof. Dr. Luu Thi Hong', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Tổng Thư ký', 'position_en' => 'Secretary General'],
+            ['name_vi' => 'GS.TS. Trần Thị Phương Mai', 'name_en' => 'Prof. Dr. Tran Thi Phuong Mai', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'GS.TS. Trần Thị Lợi', 'name_en' => 'Prof. Dr. Tran Thi Loi', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'TS. Vũ Thị Nhung', 'name_en' => 'Dr. Vu Thi Nhung', 'title_vi' => 'TS.', 'title_en' => 'Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'BSCKII. Nguyễn Hữu Dự', 'name_en' => 'Specialist Level II Nguyen Huu Du', 'title_vi' => 'BSCKII.', 'title_en' => 'Specialist Level II', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'TS. Nguyễn Xuân Huy', 'name_en' => 'Dr. Nguyen Xuan Huy', 'title_vi' => 'TS.', 'title_en' => 'Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'GS.TS. Vương Tiến Hòa', 'name_en' => 'Prof. Dr. Vuong Tien Hoa', 'title_vi' => 'GS.TS.', 'title_en' => 'Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'TS. Huỳnh Thị Kim Chi', 'name_en' => 'Dr. Huynh Thi Kim Chi', 'title_vi' => 'TS.', 'title_en' => 'Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Lê Hoài Chương', 'name_en' => 'Assoc. Prof. Dr. Le Hoai Chuong', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Vũ Văn Du', 'name_en' => 'Assoc. Prof. Dr. Vu Van Du', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Phạm Bá Nha', 'name_en' => 'Assoc. Prof. Dr. Pham Ba Nha', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Nguyễn Ngọc Minh', 'name_en' => 'Assoc. Prof. Dr. Nguyen Ngoc Minh', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'BS. Đỗ Thị Kim Ngọc', 'name_en' => 'MD. Do Thi Kim Ngoc', 'title_vi' => 'BS.', 'title_en' => 'MD.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Lê Hoàng', 'name_en' => 'Assoc. Prof. Dr. Le Hoang', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'ThS. Hồ Mạnh Tường', 'name_en' => 'MSc. Ho Manh Tuong', 'title_vi' => 'ThS.', 'title_en' => 'MSc.', 'position_vi' => 'Ủy viên — phụ trách VP miền Nam', 'position_en' => 'Member — Southern Office'],
+            ['name_vi' => 'TS. Trần Đình Vinh', 'name_en' => 'Dr. Tran Dinh Vinh', 'title_vi' => 'TS.', 'title_en' => 'Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Lê Hồng Cẩm', 'name_en' => 'Assoc. Prof. Dr. Le Hong Cam', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Lê Minh Tâm', 'name_en' => 'Assoc. Prof. Dr. Le Minh Tam', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'ThS. Đinh Anh Tuấn', 'name_en' => 'MSc. Dinh Anh Tuan', 'title_vi' => 'ThS.', 'title_en' => 'MSc.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Huỳnh Nguyễn Khánh Trang', 'name_en' => 'Assoc. Prof. Dr. Huynh Nguyen Khanh Trang', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'BSCKII. Trần Ngọc Hải', 'name_en' => 'Specialist Level II Tran Ngoc Hai', 'title_vi' => 'BSCKII.', 'title_en' => 'Specialist Level II', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'PGS.TS. Vương Thị Ngọc Lan', 'name_en' => 'Assoc. Prof. Dr. Vuong Thi Ngoc Lan', 'title_vi' => 'PGS.TS.', 'title_en' => 'Assoc. Prof. Dr.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'BSCKII. Bùi Minh Cường', 'name_en' => 'Specialist Level II Bui Minh Cuong', 'title_vi' => 'BSCKII.', 'title_en' => 'Specialist Level II', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'ThS. Hà Tố Nguyên', 'name_en' => 'MSc. Ha To Nguyen', 'title_vi' => 'ThS.', 'title_en' => 'MSc.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'BSCKII. Phạm Thanh Hải', 'name_en' => 'Specialist Level II Pham Thanh Hai', 'title_vi' => 'BSCKII.', 'title_en' => 'Specialist Level II', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'ThS. Nguyễn Việt Quang', 'name_en' => 'MSc. Nguyen Viet Quang', 'title_vi' => 'ThS.', 'title_en' => 'MSc.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'BS. Dương Thị Hải Ngọc', 'name_en' => 'MD. Duong Thi Hai Ngoc', 'title_vi' => 'BS.', 'title_en' => 'MD.', 'position_vi' => 'Ủy viên', 'position_en' => 'Member'],
+            ['name_vi' => 'TS. Phạm Phương Lan', 'name_en' => 'Dr. Pham Phuong Lan', 'title_vi' => 'TS.', 'title_en' => 'Dr.', 'position_vi' => 'Thủ quỹ', 'position_en' => 'Treasurer'],
+            ['name_vi' => 'Nguyễn Văn Hùng', 'name_en' => 'Nguyen Van Hung', 'title_vi' => null, 'title_en' => null, 'position_vi' => 'Kế toán trưởng', 'position_en' => 'Chief Accountant'],
         ];
 
-        foreach ($members as $member) {
+        foreach ($members as $index => $member) {
             BoardMember::query()->updateOrCreate(
                 ['name_vi' => $member['name_vi']],
                 array_merge($member, [
-                    'title_vi' => 'PGS.TS',
-                    'title_en' => 'Assoc. Prof.',
-                    'organization_vi' => 'Bệnh viện Phụ sản Trung ương',
-                    'organization_en' => 'National Hospital of Obstetrics and Gynecology',
-                    'bio_vi' => 'Tiểu sử đang được cập nhật.',
-                    'bio_en' => 'Biography is being updated.',
-                    'term' => '2025–2030',
+                    'sort_order' => $index + 1,
+                    'term' => '2021–2026',
                     'is_active' => true,
                 ])
             );
